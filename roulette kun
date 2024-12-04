@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Redirect</title>
+    <script>
+        function redirectBasedOnTime() {
+            // 基本URL
+            const baseUrl = "https://sites.google.com/view/roulettekun/roll/";
+
+            // 配列を動的に生成（1から20の末尾を付けたURL）
+            const urls = Array.from({ length: 20 }, (_, i) => `${baseUrl}${i + 1}`);
+
+            // 現在のミリ秒を20で割った余りを使ってリンクを選択
+            const currentMilliseconds = new Date().getMilliseconds();
+            const index = currentMilliseconds % urls.length; // 0〜19の範囲
+            const url = urls[index];
+
+            // リダイレクト
+            window.location.href = url;
+        }
+
+        // ページ読み込み時にリダイレクト
+        window.onload = redirectBasedOnTime;
+    </script>
+</head>
+<body>
+    <h1>Redirecting...</h1>
+</body>
+</html>
